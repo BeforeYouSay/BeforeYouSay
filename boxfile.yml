@@ -1,0 +1,12 @@
+run.config:
+  engine: python
+  extra_packages:
+    - nginx
+  extra_steps:
+  - 'python -m nltk.downloader maxent_treebank_pos_tagger'
+  - 'python -m nltk.downloader punkt'
+  - 'python -m nltk.downloader averaged_perceptron_tagger'
+web.main:
+  start:
+    nginx: nginx -c /app/etc/nginx.conf
+    flask: gunicorn -c /app/etc/gunicorn.py app:app
