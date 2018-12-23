@@ -4,7 +4,12 @@ from main import clean_content as library_clean_content
 from flask import json
 from flask import request
 
-app = Flask(__name__)
+from flask_failsafe import failsafe
+
+@failsafe
+def create_app():
+    return Flask(__name__)
+app = create_app()
 
 @app.route('/')
 def homepage():
@@ -23,7 +28,7 @@ def clean_content():
 if __name__ == "__main__":
     from os import path
     import os
-    extra_dirs = ['templates','static']
+    extra_dirs = ['.','templates','static']
     extra_files = extra_dirs[:]
     for extra_dir in extra_dirs:
         for dirname, dirs, files in os.walk(extra_dir):
@@ -32,4 +37,4 @@ if __name__ == "__main__":
                 if path.isfile(filename):
                     extra_files.append(filename)
 
-    app.run(host='0.0.0.0', extra_files=extra_files)
+    app.run(host='0.0.0.0', extra_files=extra_files, debug=True)
