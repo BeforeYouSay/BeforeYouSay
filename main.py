@@ -1,6 +1,6 @@
 import nltk
 from nltk.tokenize import sent_tokenize
-simple_conversions = {'Can I': 'May I'}
+simple_conversions = {'Can I': 'May I', 'Can you': 'Could you'}
 with open('bad_words.txt', 'r') as f:
     bad_words = [word.strip() for word in f.readlines()[13:]]
 
@@ -27,10 +27,12 @@ def add_please(content):
                 else:
                     new_tags_with_words.insert(i+n, ('please', ''))
                 n += 1
+                break
             if tag_with_word[1] == 'NNP' and not tag_with_word[0] in ['May', 'I']:
                 new_tags_with_words[i+n] = (tag_with_word[0].lower(), tag_with_word[1])
                 new_tags_with_words.insert(i+n, ('Please', ''))
                 n += 1
+                break
         if new_tags_with_words[-1][0] in ['.', '?', '!']:
             sentence = ' '.join([x[0] for x in new_tags_with_words[:-1]])+new_tags_with_words[-1][0]
         else:
