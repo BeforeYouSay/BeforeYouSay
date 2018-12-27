@@ -34,14 +34,13 @@ BeforeYouSayOrDo</a>
 
 <div class="container" style="margin-top:30px">
   <p>Please enter text that needs the word <em style="background:yellow">please</em> added to it:</p>
-  <textarea v-model="content" class="form-control"></textarea><button v-on:click="cleanContent" type="button" class="btn btn-primary">Clean</button><br>
-  <strong>Cleaned content:</strong>
+  <textarea v-model="content" class="form-control"></textarea><button v-on:click="cleanContent" type="button" class="btn btn-primary">Clean</button> <i class="fas fa-arrow-right"></i>
   {( cleanedContent )}
   <h2>Examples of adding please</h2>
   <ul>
-    <li>Get me a coke. <i class="fas fa-arrow-right"></i> Please get me a coke.</li>
-    <li>Run to the park. <i class="fas fa-arrow-right"></i> Please run to the park.</li>
-    <li>Can you take me out to lunch? <i class="fas fa-arrow-right"></i> Could you please take me out to lunch?</li>
+    <li><a href="#" v-on:click="runContent('Get me a coke.')">Get me a coke.</a> <i class="fas fa-arrow-right"></i> Please get me a coke.</li>
+    <li><a href="#" v-on:click="runContent('Run to the park.')">Run to the park.</a> <i class="fas fa-arrow-right"></i> Please run to the park.</li>
+    <li><a href="#" v-on:click="runContent('Can you take me out to lunch?')">Can you take me out to lunch?</a> <i class="fas fa-arrow-right"></i> Could you please take me out to lunch?</li>
   </ul>
 </div>
 </div>

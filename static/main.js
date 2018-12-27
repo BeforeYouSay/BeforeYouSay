@@ -16,6 +16,10 @@ app = new Vue({
       $.post('/clean_content', {'content': this.content}, function(data) {
       app.cleanedContent = data.cleaned_content;
       })
+    },
+    runContent: function(content) {
+      this.content = content;
+      this.cleanContent();
     }
   }
 })
